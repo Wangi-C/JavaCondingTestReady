@@ -1,5 +1,6 @@
 package algorithm.chepter_TwoPointerSlidingWindow;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class TwoArraySum {
@@ -10,6 +11,7 @@ public class TwoArraySum {
         for(int i=0; i<n; i++){
             a[i]=kb.nextInt();
         }
+
         int m=kb.nextInt();
         int[] b=new int[m];
         for(int i=0; i<m; i++){
@@ -19,7 +21,20 @@ public class TwoArraySum {
     }
 
     public static int[] solution(int a1, int a2, int[] a1Arr, int[] a2Arr) {
+        int[] resultArr = new int[a1+a2];
+        int insertCnt = 0;
 
-        return null;
+        for (int a : a1Arr) {
+            resultArr[insertCnt] = a;
+            insertCnt++;
+        }
+
+        for (int b : a2Arr) {
+            resultArr[insertCnt] = b;
+            insertCnt++;
+        }
+
+        Arrays.sort(resultArr);
+        return resultArr;
     }
 }
