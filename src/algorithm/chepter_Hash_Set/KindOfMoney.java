@@ -31,20 +31,26 @@ public class KindOfMoney {
     }
 
     public static List<Integer> solution2(int n, int k, int[] arr) {
-        Set<Integer> set = new HashSet<>();
+        Map<Integer, Integer> map = new HashMap<>();
         ArrayList<Integer> result = new ArrayList<>();
         int idx = k;
-        while (idx < n) {
-            if (set.isEmpty()) {
-                for (int i = 0; i < idx; i++) {
-                    set.add(arr[i]);
-                }
-            } else {
-                set.remove(arr[idx-k]);
-                set.add(arr[idx]);
-            }
 
-            result.add(set.size());
+        for (int i = 0; i < k; i++) {
+            map.put(arr[i], map.getOrDefault(arr[i], 0) + 1);
+        }
+        result.add(map.keySet().size());
+
+        while (idx < n) {
+            if (map.containsKey(arr[idx-k])) {
+                int cnt = map.get(arr[idx-k]) - 1;
+                if (cnt == 0) {
+                    map.remove(arr[idx-k]);
+                } else {
+                    map.put(arr[idx-k], map.get(arr[idx-k]) - 1);
+                }
+            }
+            map.put(arr[idx], map.getOrDefault(arr[idx], 0) + 1);
+            result.add(map.keySet().size());
             idx++;
         }
 
