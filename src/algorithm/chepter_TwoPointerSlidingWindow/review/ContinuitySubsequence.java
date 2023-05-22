@@ -31,6 +31,8 @@ public class ContinuitySubsequence {
                 }
                 sum -= arr[lt++];
             }
+
+            rt++;
         }
 
         return answer;
