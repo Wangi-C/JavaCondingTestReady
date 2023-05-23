@@ -21,23 +21,24 @@ public class MaxContinuitySubsequence {
         int rt = 0;
 
         while (rt < n) {
-            rt++;
-
             if (arr[rt] == 0) {
                 if (k>0) {
-                    rt++;
+                    k--;
                 } else {
-
                     while (k==0) {
-                        lt++;
                         if (arr[lt] == 0) {
                             k++;
                         }
+                        lt++;
                     }
                 }
             }
+            len = rt - lt + 1;
+            answer = Math.max(answer, len);
+
+            rt++;
         }
 
-        return 0;
+        return answer;
     }
 }
