@@ -10,6 +10,7 @@ public class StringConcatTest {
         };
         concat.makeString("Hello", "world_L");
     }
+
     /**
      * 객체지향 vs 람다식
      * (객체지향) Interface -> Interfase Impl 구현체 -> main에서 구현체 사용

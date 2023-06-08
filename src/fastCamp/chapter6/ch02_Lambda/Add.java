@@ -1,5 +1,6 @@
 package fastCamp.chapter6.ch02_Lambda;
 
+@FunctionalInterface
 public interface Add {
     // 함수형 인터페이스
     // 람다식을 선언하기 위해 사용

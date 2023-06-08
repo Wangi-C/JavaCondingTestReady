@@ -8,7 +8,40 @@ class Outer2 {
     Runnable getRunnable(int i) {
         int num = 10;
 
+        // 익명 내부 클래스 1
         return new Runnable() {
+
+            int localNum = 1000;
+            @Override
+            public void run() {
+                System.out.println("i = " + i);
+                System.out.println("num = " + num);
+                System.out.println("localNum = " + localNum);
+
+                System.out.println("outNum = " + outNum);
+                System.out.println("Outer.sNum = " + Outer2.sNum);
+            }
+        };
+    }
+
+    // 익명 내부 클래스 2
+    Runnable runnable = new Runnable() {
+        @Override
+        public void run() {
+            System.out.println("runnable class");
+        }
+    };
+}
+
+class Outer1 {
+
+    int outNum = 100;
+    static int sNum = 200;
+
+    Runnable getRunnable(int i) {
+        int num = 10;
+
+        class MyRunnable implements Runnable {
 
             int localNum = 1000;
             @Override
@@ -26,26 +59,26 @@ class Outer2 {
                 System.out.println("outNum = " + outNum);
                 System.out.println("Outer.sNum = " + Outer2.sNum);
             }
-        };
-    }
-
-    Runnable runnable = new Runnable() {
-        @Override
-        public void run() {
-            System.out.println("runnable class");
         }
-    };
+
+        return new MyRunnable();
+    }
 }
 
 public class AnonumousInnerTest {
 
     public static void main(String[] args) {
-        Outer2 outer2 = new Outer2();
+        /*Outer2 outer2 = new Outer2();
+
         Runnable runnable = outer2.getRunnable(100);
 
         runnable.run();
 
         //다른 데서는 사용하지 않는 getRunnable을 굳이 이름을 주면서까지 class를 만들어줘야하나? -> 익명내부클래스
-        outer2.runnable.run();
+        outer2.runnable.run();*/
+
+        Outer1 outer1 = new Outer1();
+        Runnable runnable = outer1.getRunnable(100);
+        runnable.run();
     }
 }
